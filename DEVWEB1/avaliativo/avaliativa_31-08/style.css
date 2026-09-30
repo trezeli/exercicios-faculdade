@@ -1,0 +1,46 @@
+*{
+    font-family: Arial;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    width: 80%;
+    margin: auto;
+}
+
+#titulo{
+    font-size: 40px;
+    text-align: center;
+}
+
+.autor {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.data {
+    font-size: 14px;
+}
+
+img {
+    width: 100%;
+}
+
+.legenda {
+    font-size: 13px;
+    color:darkgray;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+a {
+    color:darkcyan;
+    text-decoration: underline;
+}
+
+.negrito{
+    font-weight: bold;
+}
