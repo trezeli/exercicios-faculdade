@@ -9,5 +9,10 @@ public class DroideBatalha extends Guerreiro {
     public DroideBatalha(String nome, int idade, int peso) {
         super(nome, idade, peso);
     }
+
+    @Override
+    public void atacar(Guerreiro alvo) {
+       
+    }
     
 }

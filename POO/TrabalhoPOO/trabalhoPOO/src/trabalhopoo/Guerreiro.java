@@ -4,7 +4,7 @@
  */
 package trabalhopoo;
 
-public class Guerreiro {
+public abstract class Guerreiro {
     protected String nome;
     protected int idade;
     protected int peso;
@@ -53,7 +53,5 @@ public class Guerreiro {
         return energia > 0;
     }
     
-    public void atacar(Guerreiro alvo){
-        
-    }
+    public abstract void atacar(Guerreiro alvo);
 }
