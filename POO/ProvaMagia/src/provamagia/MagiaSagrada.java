@@ -8,6 +8,15 @@ package provamagia;
  *
  * @author queir
  */
-public class MagiaSagrada {
+public class MagiaSagrada extends MagiaSimples {
+
+    public MagiaSagrada(String nomeUsuario, int poder) {
+        super(nomeUsuario, poder);
+    }
+
+    @Override
+    public String obterCor() {
+        return "Branco";
+    }
     
 }

@@ -8,6 +8,24 @@ package provamagia;
  *
  * @author queir
  */
-public class MagiaSimples {
+public abstract class MagiaSimples extends Magia {
+    private final String nomeUsuario;
+    private final int poder;
+
+    public MagiaSimples(String nomeUsuario, int poder) {
+        super();
+        this.nomeUsuario = nomeUsuario;
+        this.poder = poder;
+    }
+
+    @Override
+    public int obterPoder(){
+        return this.poder;
+    }
+
+    @Override
+    public String obterNomeUsuario(){
+        return this.nomeUsuario;
+    }
     
 }

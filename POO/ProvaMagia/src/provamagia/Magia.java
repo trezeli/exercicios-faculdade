@@ -8,6 +8,19 @@ package provamagia;
  *
  * @author queir
  */
-public class Magia {
+public abstract class Magia {
+    private static int qt = 0;
+
+    public Magia() {
+        Magia.qt++;
+    }
     
+    
+    public static int getQtMagia(){
+        return Magia.qt++;
+    }
+    
+    public abstract String obterNomeUsuario();
+    public abstract int obterPoder();
+    public abstract String obterCor();
 }
