@@ -1,0 +1,40 @@
+*{
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.container { 
+    width: 100%; 
+    height: 100vh; 
+}
+
+.linha-vermelha { 
+    height: 40%; 
+    display: block; 
+}
+
+.linha-branca {
+    height: 20%; 
+    display: block; 
+    background-color: white; 
+}
+
+.verm-esq, .branco-vert, .verm-dir {
+    height: 100%;
+    display: inline-block;
+}
+
+.verm-esq { 
+    width: 30%; 
+    background-color: #c60c30; 
+}
+
+.branco-vert { 
+    width: 15%; 
+    background-color: white; 
+}
+
+.verm-dir { 
+    width: 55%; 
+    background-color: #c60c30; 
+}

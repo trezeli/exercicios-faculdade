@@ -1,0 +1,28 @@
+*{
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    margin: 0px auto;
+}
+
+.verde, .branco, .laranja{
+    width: 33.333%;
+    height: 100%;
+    display: inline-block;
+}
+
+.verde{
+    background-color: green;
+}
+
+.branco{
+    background-color: white;
+}
+
+.laranja{
+    background-color: orange;
+}

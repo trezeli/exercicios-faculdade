@@ -1,0 +1,28 @@
+*{
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    margin: 0px auto;
+}
+
+.azul, .branco, .vermelho{
+    width: 33.333%;
+    height: 100%;
+    display: inline-block;
+}
+
+.azul{
+    background-color: blue;
+}
+
+.branco{
+    background-color: white;
+}
+
+.vermelho{
+    background-color: red;
+}
