@@ -25,4 +25,15 @@ public class Conexao {
         }
         return conexao;
     }
+    
+    public static void fechar() {
+        try {
+            if (conexao != null && !conexao.isClosed()) {
+                conexao.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        conexao = null;
+    }
 }

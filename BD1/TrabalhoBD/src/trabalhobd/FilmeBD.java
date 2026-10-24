@@ -104,4 +104,60 @@ public class FilmeBD {
             con.setAutoCommit(true);
         }
     }
+    
+    public List<Item> listarCores() throws SQLException {
+        List<Item> lista = new ArrayList<>();
+        String sql = "SELECT cod_cor, nom_cor FROM cor ORDER BY nom_cor";
+
+        Connection con = Conexao.getConexao();
+        try (PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                lista.add(new Item(rs.getString("cod_cor"), rs.getString("nom_cor")));
+            }
+        }
+        return lista;
+    }
+
+    public List<Item> listarGeneros() throws SQLException {
+        List<Item> lista = new ArrayList<>();
+        String sql = "SELECT cod_genero, nom_genero FROM genero ORDER BY nom_genero";
+
+        Connection con = Conexao.getConexao();
+        try (PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                lista.add(new Item(rs.getString("cod_genero"), rs.getString("nom_genero")));
+            }
+        }
+        return lista;
+    }
+
+    public List<Filme> buscar(String nome) throws SQLException {
+        List<Filme> lista = new ArrayList<>();
+        String sql = "SELECT f.cod_filme, f.nom_filme, f.cod_cor, c.nom_cor, "
+                + "f.cod_genero, g.nom_genero "
+                + "FROM filme f "
+                + "JOIN cor c ON c.cod_cor = f.cod_cor "
+                + "JOIN genero g ON g.cod_genero = f.cod_genero "
+                + "WHERE f.nom_filme ILIKE ? "
+                + "ORDER BY f.nom_filme "
+                + "LIMIT 50";
+
+        Connection con = Conexao.getConexao();
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, "%" + nome + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Filme f = new Filme();
+                    f.setCodFilme(rs.getInt("cod_filme"));
+                    f.setNomFilme(rs.getString("nom_filme"));
+                    f.setCodCor(rs.getString("cod_cor"));
+                    f.setNomCor(rs.getString("nom_cor"));
+                    f.setCodGenero(rs.getInt("cod_genero"));
+                    f.setNomGenero(rs.getString("nom_genero"));
+                    lista.add(f);
+                }
+            }
+        }
+        return lista;
+    }
 }

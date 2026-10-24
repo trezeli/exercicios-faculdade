@@ -198,4 +198,18 @@ public class ClienteBD {
             con.setAutoCommit(true);
         }
     }
+    
+    public List<Item> listarSituacoes() throws SQLException {
+        List<Item> lista = new ArrayList<>();
+        String sql = "SELECT val_dominio, dsc_dominio FROM dominio "
+                + "WHERE cod_dominio = 'sit_cliente' ORDER BY val_dominio";
+
+        Connection con = Conexao.getConexao();
+        try (PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                lista.add(new Item(rs.getString("val_dominio"), rs.getString("dsc_dominio")));
+            }
+        }
+        return lista;
+    }
 }
