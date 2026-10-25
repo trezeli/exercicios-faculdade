@@ -12,7 +12,7 @@ public class Conexao {
     
     private static Connection conexao = null;
 
-    public Conexao() {
+    private Conexao() {
     }
     
     public static Connection getConexao() throws SQLException {
@@ -20,7 +20,7 @@ public class Conexao {
             conexao = DriverManager.getConnection(
                 "jdbc:postgresql://localhost:5432/loc004",
                 "postgres",
-                "0611"
+                "sua_senha"
             );
         }
         return conexao;

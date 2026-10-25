@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package trabalhobd;
-import java.util.ArrayList;
-import java.util.List;
 
 public class TrabalhoBD {
 
