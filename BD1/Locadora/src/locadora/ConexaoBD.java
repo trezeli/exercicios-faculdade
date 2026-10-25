@@ -14,7 +14,7 @@ public class ConexaoBD {
     public static Connection getConexao() throws SQLException {
         if (conn == null || conn.isClosed()) {
             conn = DriverManager.getConnection(
-                "jdbc:postgresql://localhost:5432/loc004", "postgres", "SENHA_AQUI");
+                "jdbc:postgresql://localhost:5432/loc004", "postgres", "0611");
         }
         return conn;
     }
