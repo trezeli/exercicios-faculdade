@@ -14,19 +14,27 @@ public class AcolitoSith extends Guerreiro {
 
     @Override
     public void atacar(LinkedList<Guerreiro>[] ladoInimigo, LinkedList<Guerreiro>[] meuLado, int minhaFila) {
-        if(!ladoInimigo[minhaFila].isEmpty()){
-            
-            //primeiro ataque no primeiro da fila dano 15
-            Guerreiro alvoDaFrente = ladoInimigo[minhaFila].getFirst();
-            alvoDaFrente.setEnergia(alvoDaFrente.getEnergia() - 15);
-            
-            //segundo ataque no ultimo da fila dano 15
-            // se tiver apenas 1 ele sofre os dois ataques
-            if(!ladoInimigo[minhaFila].isEmpty()){
-                Guerreiro alvoDeTras = ladoInimigo[minhaFila].getLast();
-                alvoDeTras.setEnergia(alvoDeTras.getEnergia() - 15);
-            }
+        Guerreiro primeiro = Arena.obterAlvo(ladoInimigo, minhaFila);
+        if (primeiro == null) {
+            return;
         }
+
+        int filaAlvo = Arena.filaDe(ladoInimigo, primeiro);
+
+        // 1º ataque: no alvo da frente
+        primeiro.setEnergia(primeiro.getEnergia() - 15);
+
+        // 2º ataque: salta para o final e ataca o último da fila adversária
+        Guerreiro ultimo = ladoInimigo[filaAlvo].getLast();
+        ultimo.setEnergia(ultimo.getEnergia() - 15);
+
+        System.out.println("   [SALTO SOMBRIO] " + this.getNome() + " atacou " + primeiro.getNome()
+                + " e " + ultimo.getNome() + "!");
+    }
+
+    @Override
+    public String getTipo() {
+        return "Acolito Sith";
     }
     
 }

@@ -24,4 +24,8 @@ public class AssassinoSith extends Guerreiro {
         }
     }
     
+    @Override
+    public String getTipo() {
+        return "Assassino Sith";
+    }
 }

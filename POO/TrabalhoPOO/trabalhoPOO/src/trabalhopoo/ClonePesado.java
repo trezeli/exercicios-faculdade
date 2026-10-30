@@ -16,16 +16,21 @@ public class ClonePesado extends Guerreiro{
 
     @Override
     public void atacar(LinkedList<Guerreiro>[] ladoInimigo, LinkedList<Guerreiro>[] meuLado, int minhaFila) {
-        // ativa provocamento da rodadis
-        Arena.provocaLado1 = this;
-        System.out.println("   [PROVOCACAO] " + this.getNome() + " ativou a provocacao!");
-        
+        // a provocação só vale se ele for o primeiro a atacar na rodada
+        if (Arena.primeiroAtaque) {
+            Arena.provocaLado1 = this;
+            System.out.println("   [PROVOCACAO] " + this.getNome() + " ativou a provocacao!");
+        }
+
         Guerreiro alvo = Arena.obterAlvo(ladoInimigo, minhaFila);
-        
-        if (alvo != null){
+        if (alvo != null) {
             alvo.setEnergia(alvo.getEnergia() - 30);
-            System.out.println("   [CANHÃO AT-RT] " + this.getNome() + " disparou 30 de dano em " + alvo.getNome() + "!");
+            System.out.println("   [CANHAO AT-RT] " + this.getNome() + " disparou 30 de dano em " + alvo.getNome() + "!");
         }
     }
     
+    @Override
+    public String getTipo() {
+        return "Clone Pesado";
+    }
 }

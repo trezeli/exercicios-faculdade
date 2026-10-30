@@ -27,4 +27,8 @@ public class DroideExterminador extends Guerreiro {
         }
     }
     
+    @Override
+    public String getTipo() {
+        return "Droide Exterminador";
+    }
 }

@@ -13,26 +13,29 @@ public class CloneMedico extends Guerreiro {
 
     public CloneMedico(String nome, int idade, int peso) {
         super(nome, idade, peso);
+        this.setEnergiaMaxima(Integer.MAX_VALUE);
     }
 
     @Override
     public void atacar(LinkedList<Guerreiro>[] ladoInimigo, LinkedList<Guerreiro>[] meuLado, int minhaFila) {
-        
-        // ataque normal no inimigo da frente 
-        if (!ladoInimigo[minhaFila].isEmpty()) {
-            Guerreiro alvo = ladoInimigo[minhaFila].getFirst();
+        Guerreiro alvo = Arena.obterAlvo(ladoInimigo, minhaFila);
+        if (alvo != null) {
             alvo.setEnergia(alvo.getEnergia() - 20);
+            System.out.println("   [BLASTER] " + this.getNome() + " atacou " + alvo.getNome() + "!");
         }
-        
-        // curar o aliado de tras
-        // so tenta curar se a fila tiver pelo menos 2 pessoas (medico e aliado)
-        if (meuLado[minhaFila].size() > 1){
-            // acessa guerreiro pos 1 da lista
-            Guerreiro aliado = meuLado[minhaFila].get(1);
+
+        // cura o aliado que está logo atrás dele na fila
+        int pos = meuLado[minhaFila].indexOf(this);
+        if (pos != -1 && pos + 1 < meuLado[minhaFila].size()) {
+            Guerreiro aliado = meuLado[minhaFila].get(pos + 1);
             aliado.setEnergia(aliado.getEnergia() + 20);
-            
-            System.out.println("   [CURA] " + this.getNome() + " curou " + aliado.getNome() + " em 25 pontos!");
+            System.out.println("   [CURA] " + this.getNome() + " curou " + aliado.getNome() + " em 20 pontos!");
         }
+    }
+    
+    @Override
+    public String getTipo() {
+        return "Clone Medico";
     }
     
 }

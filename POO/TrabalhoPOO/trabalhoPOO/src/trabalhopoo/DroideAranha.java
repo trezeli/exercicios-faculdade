@@ -14,26 +14,20 @@ public class DroideAranha extends Guerreiro {
 
     @Override
     public void atacar(LinkedList<Guerreiro>[] ladoInimigo, LinkedList<Guerreiro>[] meuLado, int minhaFila) {
-        int filaAlvo = minhaFila;
-        
-        //se houver provocacao do clone pesado ativa,descobre pra focar la na fila dele
-        if (Arena.provocaLado1 != null && Arena.provocaLado1.isVivo()){
-            for (int f = 0; f < 4; f++){
-                filaAlvo = f;
-                break;
-            }
+        int filaAlvo = Arena.obterFilaAlvo(ladoInimigo, minhaFila);
+        if (filaAlvo == -1) {
+            return;
         }
-        
-        LinkedList<Guerreiro> filaInimiga = ladoInimigo[filaAlvo];
-        
-        //se a fila tiver guerreiros aplica 10 de dano a TODOS de uma vez
-        if (!filaInimiga.isEmpty()){
-            System.out.println("   [VARREDURA LASER] " + this.getNome() + " disparou 10 de dano em TODOS os guerreiros da fila " + (filaAlvo + 1) + "!");
-            
-            for (Guerreiro g : filaInimiga){
-                g.setEnergia(g.getEnergia() - 10);
-            }
+
+        System.out.println("   [VARREDURA LASER] " + this.getNome() + " disparou 10 de dano em TODOS da fila " + (filaAlvo + 1) + "!");
+        for (Guerreiro g : ladoInimigo[filaAlvo]) {
+            g.setEnergia(g.getEnergia() - 10);
         }
+    }
+    
+    @Override
+    public String getTipo() {
+        return "Droide Aranha";
     }
     
 }

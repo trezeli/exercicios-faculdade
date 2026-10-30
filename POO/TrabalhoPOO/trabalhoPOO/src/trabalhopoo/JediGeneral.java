@@ -41,4 +41,9 @@ public class JediGeneral extends Guerreiro {
         }
     }
     
+    @Override
+    public String getTipo() {
+        return "Jedi General";
+    }
+    
 }

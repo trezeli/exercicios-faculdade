@@ -5,10 +5,7 @@
 package trabalhopoo;
 
 import java.util.LinkedList;
-/**
- *
- * @author queir
- */
+
 public class JediConsular extends Guerreiro {
 
     public JediConsular(String nome, int idade, int peso) {
@@ -17,24 +14,26 @@ public class JediConsular extends Guerreiro {
     
     @Override
     public void atacar(LinkedList<Guerreiro>[] ladoInimigo, LinkedList<Guerreiro>[] meuLado, int minhaFila){
+        Guerreiro alvo = Arena.obterAlvo(ladoInimigo, minhaFila);
         
-        // ataque principal na mesma fila
-        if (!ladoInimigo[minhaFila].isEmpty()){
-            Guerreiro alvoPrincipal = ladoInimigo[minhaFila].getFirst();
-            alvoPrincipal.setEnergia(alvoPrincipal.getEnergia() - 30);
+        if (alvo == null){
+            return;
         }
         
-        // ataque fila de cima
-        // if verifica se a fila atual eh maior q 0 e se a fila de cima nao ta vazia
-        if (minhaFila > 0 && !ladoInimigo[minhaFila - 1].isEmpty()){
-            Guerreiro alvoCima = ladoInimigo[minhaFila - 1].getFirst();
-            alvoCima.setEnergia(alvoCima.getEnergia() - 15);
+        int f = Arena.filaDe(ladoInimigo, alvo);
+        alvo.setEnergia(alvo.getEnergia() - 30);
+        if (f > 0 && !ladoInimigo[f - 1].isEmpty()){
+            Guerreiro g = ladoInimigo[f - 1].getFirst();
+            g.setEnergia(g.getEnergia() - 15);
         }
-        
-        //ataque fila baixo
-        if (minhaFila < 3 && !ladoInimigo[minhaFila + 1].isEmpty()){
-            Guerreiro alvoBaixo = ladoInimigo[minhaFila + 1].getFirst();
-            alvoBaixo.setEnergia(alvoBaixo.getEnergia() - 15);
+        if (f < 3 && !ladoInimigo[f + 1].isEmpty()){
+            Guerreiro g = ladoInimigo[f + 1].getFirst();
+            g.setEnergia(g.getEnergia() - 15);
         }
+    }
+    
+    @Override
+    public String getTipo() {
+        return "Jedi Consular";
     }
 }

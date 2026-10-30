@@ -12,6 +12,7 @@ public abstract class Guerreiro {
     private int energia = 100;
     private int energiaMaxima = 100;
     private boolean envenenado = false;
+    private boolean impedido = false;
 
     public Guerreiro(String nome, int idade, int peso) {
         this.nome = nome;
@@ -60,12 +61,24 @@ public abstract class Guerreiro {
         this.energiaMaxima = energiaMaxima;
     }
 
+    public int getEnergiaMaxima() {
+        return energiaMaxima;
+    }
+
     public boolean isEnvenenado() {
         return envenenado;
     }
 
     public void setEnvenenado(boolean envenenado) {
         this.envenenado = envenenado;
+    }
+    
+    public boolean isImpedido(){
+        return impedido;
+    }
+
+    public void setImpedido(boolean impedido) {
+        this.impedido = impedido;
     }
     
     public boolean isVivo(){
@@ -77,4 +90,12 @@ public abstract class Guerreiro {
     public void aoSerEliminado(LinkedList<Guerreiro>[] meuLado, int minhaFila){
         
     }
+    
+    public void aplicarVeneno(){
+        if (envenenado){
+            setEnergia(energia - 5);
+        }
+    }
+    
+    public abstract String getTipo();
 }

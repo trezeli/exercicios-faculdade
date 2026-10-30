@@ -36,4 +36,9 @@ public class LordeSith extends Guerreiro {
         }
     }
     
+    @Override
+    public String getTipo() {
+        return "Lorde Sith";
+    }
+    
 }

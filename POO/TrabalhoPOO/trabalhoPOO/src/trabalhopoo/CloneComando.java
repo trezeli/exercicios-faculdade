@@ -15,30 +15,32 @@ public class CloneComando extends Guerreiro {
 
     @Override
     public void atacar(LinkedList<Guerreiro>[] ladoInimigo, LinkedList<Guerreiro>[] meuLado, int minhaFila) {
-        if (!ladoInimigo[minhaFila].isEmpty()){
-            
-            // conta qnts clone com estao em sequencia atras 
-            int clonesAtras = 0;
-            LinkedList<Guerreiro> minhaLista = meuLado[minhaFila];
-            
-            // comeca do indice 1 (logo atras do atacante)
-            for (int i = 1; i < minhaLista.size(); i++){
-                if (minhaLista.get(i) instanceof CloneComando){
-                    clonesAtras++;
-                } else {
-                    break;
-                }
-            }
-            
-            int danoTotal = 40 + (clonesAtras * 8);
-            
-            Guerreiro alvo = ladoInimigo[minhaFila].getFirst();
-            alvo.setEnergia(alvo.getEnergia() - danoTotal);
-            
-            System.out.println("   [ESQUADRAO COMANDO] " + this.getNome() +  
-                               " atacou com " + danoTotal + " de dano! (" +
-                               clonesAtras + " comandos na retaguarda)");          
+        Guerreiro alvo = Arena.obterAlvo(ladoInimigo, minhaFila);
+        if (alvo == null) {
+            return;
         }
+
+        // conta os Clones Comando em sequência logo atrás dele
+        LinkedList<Guerreiro> minhaLista = meuLado[minhaFila];
+        int clonesAtras = 0;
+        for (int i = minhaLista.indexOf(this) + 1; i < minhaLista.size(); i++) {
+            if (minhaLista.get(i) instanceof CloneComando) {
+                clonesAtras++;
+            } else {
+                break;
+            }
+        }
+
+        int danoTotal = 40 + (clonesAtras * 8);
+        alvo.setEnergia(alvo.getEnergia() - danoTotal);
+
+        System.out.println("   [ESQUADRAO COMANDO] " + this.getNome() + " atacou com " + danoTotal
+                + " de dano! (" + clonesAtras + " comandos na retaguarda)");
+    }
+    
+    @Override
+    public String getTipo() {
+        return "Clone Comando";
     }
     
 }

@@ -12,36 +12,48 @@ public class Arena {
     private LinkedList<Guerreiro>[] lado2;
     
     public static Guerreiro provocaLado1 = null;
+    public static boolean primeiroAtaque = false;
     public static Guerreiro ultimoAtacante = null;
     public static Guerreiro ultimoDerrotado = null;
+    private java.util.Random sorteio = new java.util.Random();
 
     public Arena(LinkedList<Guerreiro>[] lado1, LinkedList<Guerreiro>[] lado2) {
         this.lado1 = lado1;
         this.lado2 = lado2;
     }
     
-    public static Guerreiro obterAlvo(LinkedList<Guerreiro>[] ladoInimigo, int fila){
-        // a provocacao só redireciona se o Clone Pesado estiver dentro do ladoInimigo que está sendo atacado!
-        if (provocaLado1 != null && provocaLado1.isVivo()){
-            for (int i = 0; i < 4; i++){
-                if (ladoInimigo[i].contains(provocaLado1)){
-                    return provocaLado1;
-                }
-            }  
-        }
-        
-        // se nao houver provocacao pega o primeiro guerreiro da fila normal
-        if (!ladoInimigo[fila].isEmpty()){
-            return ladoInimigo[fila].getFirst();
-        }
-        
-        // fallback: Se a fila oposta estiver vazia, busca na primeira fila inimiga que tiver gente
+    public static int filaDe(LinkedList<Guerreiro>[] lado, Guerreiro g){
         for (int i = 0; i < 4; i++){
-            if(!ladoInimigo[i].isEmpty()){
-                return ladoInimigo[i].getFirst();
+            if (lado[i].contains(g)) return i;
+        }
+        return -1;
+    }
+    
+    public static int obterFilaAlvo(LinkedList<Guerreiro>[] ladoInimigo, int fila) {
+        if (provocaLado1 != null && provocaLado1.isVivo()) {
+            int f = filaDe(ladoInimigo, provocaLado1);
+            if (f != -1) {
+                return f;
             }
         }
-        return null;
+        for (int k = 0; k < 4; k++) {
+            int f = (fila + k) % 4;          // fila, fila+1, fila+2... circular
+            if (!ladoInimigo[f].isEmpty()) {
+                return f;
+            }
+        }
+        return -1;
+    }
+
+    public static Guerreiro obterAlvo(LinkedList<Guerreiro>[] ladoInimigo, int fila) {
+        int f = obterFilaAlvo(ladoInimigo, fila);
+        if (f == -1) {
+            return null;
+        }
+        if (provocaLado1 != null && ladoInimigo[f].contains(provocaLado1)) {
+            return provocaLado1;
+        }
+        return ladoInimigo[f].getFirst();
     }
     
     public static boolean temGuerreirosVivos(LinkedList<Guerreiro>[] lado){
@@ -101,57 +113,95 @@ public class Arena {
         }
     }
     
-    public void iniciarSimulacao(){
+    public void iniciarSimulacao() {
         exibirRelatorioInicial();
-        
         int rodada = 1;
-        while (temGuerreirosVivos(lado1) && temGuerreirosVivos(lado2)){
+        while (temGuerreirosVivos(lado1) && temGuerreirosVivos(lado2)) {
             System.out.println("--- RODADA " + rodada + " ---");
-            provocaLado1 = null; //reseta a provocacao no inicio do turno
-            
-            // executa o combate entre filas
-            for (int i = 0; i < 4; i++){
-                // lado1 ataca lado 2
-                if (!lado1[i].isEmpty() && temGuerreirosVivos(lado2)){
-                    Guerreiro atacante = lado1[i].getFirst();
-                    Guerreiro alvo = obterAlvo(lado2, i);
-                    
-                    if (alvo != null){
-                        atacante.atacar(lado2, lado1, i);
-                        if (!alvo.isVivo()){
-                            ultimoAtacante = atacante;
-                            ultimoDerrotado = alvo;
-                        }
-                    }
-                }
-                
-                // lado2 ataca lado 1
-                if (!lado2[i].isEmpty() && temGuerreirosVivos(lado1)){
-                    Guerreiro atacante = lado2[i].getFirst();
-                    Guerreiro alvo = obterAlvo(lado1, i);
-                    
-                    if (alvo != null){
-                        atacante.atacar(lado1, lado2, i);
-                        if (!alvo.isVivo()){
-                            ultimoAtacante = atacante;
-                            ultimoDerrotado = alvo;
-                        }
-                    }
-                }
+            provocaLado1 = null;
+            primeiroAtaque = true;
+
+            Guerreiro[] atq1 = primeiros(lado1);
+            Guerreiro[] atq2 = primeiros(lado2);
+
+            if (sorteio.nextBoolean()) {                 // sorteio de quem começa
+                faseDeAtaque(atq1, lado1, lado2);
+                faseDeAtaque(atq2, lado2, lado1);
+            } else {
+                faseDeAtaque(atq2, lado2, lado1);
+                faseDeAtaque(atq1, lado1, lado2);
             }
-            
-            limparMortos(lado1);
-            limparMortos(lado2);
-            
+
+            rodizio(atq1, lado1);
+            rodizio(atq2, lado2);
             rodada++;
         }
-        
         exibirRelatorioFinal();
     }
-    
-    private void limparMortos(LinkedList<Guerreiro>[] lado){
-        for (int i = 0; i < 4; i++){
-            lado[i].removeIf(g -> !g.isVivo());
+
+    private Guerreiro[] primeiros(LinkedList<Guerreiro>[] lado) {
+        Guerreiro[] r = new Guerreiro[4];
+        for (int i = 0; i < 4; i++) {
+            r[i] = lado[i].isEmpty() ? null : lado[i].getFirst();
+        }
+        return r;
+    }
+
+    private void faseDeAtaque(Guerreiro[] atacantes, LinkedList<Guerreiro>[] meu, LinkedList<Guerreiro>[] inimigo) {
+        for (int i = 0; i < 4; i++) {
+            Guerreiro a = atacantes[i];
+            if (a == null || !a.isVivo() || !temGuerreirosVivos(inimigo)) {
+                continue;
+            }
+
+            if (a.isImpedido()) {            // foi empurrado pelo Mestre
+                a.setImpedido(false);
+                continue;
+            }
+
+            a.aplicarVeneno();               // veneno do Assassino
+            if (!a.isVivo()) {
+                removerMortos(meu, null);
+                continue;
+            }
+
+            a.atacar(inimigo, meu, i);
+            primeiroAtaque = false;
+
+            removerMortos(inimigo, a);       // remove na hora e dispara aoSerEliminado
+            removerMortos(meu, null);
+        }
+    }
+
+    private void removerMortos(LinkedList<Guerreiro>[] lado, Guerreiro atacante) {
+        for (int i = 0; i < 4; i++) {
+            LinkedList<Guerreiro> mortos = new LinkedList<>();
+            for (Guerreiro g : lado[i]) {
+                if (!g.isVivo()) {
+                    mortos.add(g);
+                }
+            }
+            for (Guerreiro g : mortos) {
+                lado[i].remove(g);
+                if (atacante != null) {
+                    ultimoAtacante = atacante;
+                }
+                ultimoDerrotado = g;
+                g.aoSerEliminado(lado, i);   // divisão do droide, acólitos do Lorde
+            }
+        }
+    }
+
+    private void rodizio(Guerreiro[] atacantes, LinkedList<Guerreiro>[] lado) {
+        for (int i = 0; i < 4; i++) {
+            Guerreiro a = atacantes[i];
+            if (a == null) {
+                continue;
+            }
+            a.setImpedido(false);
+            if (a.isVivo() && lado[i].size() > 1 && lado[i].remove(a)) {
+                lado[i].addLast(a);          // primeiro vai para o final
+            }
         }
     }
    

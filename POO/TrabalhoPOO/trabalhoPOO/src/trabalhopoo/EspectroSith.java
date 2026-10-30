@@ -20,5 +20,10 @@ public class EspectroSith extends Guerreiro {
             alvo.setEnergia(alvo.getEnergia() - 5);
         }
     }
+    
+    @Override
+    public String getTipo() {
+        return "Espectro Sith";
+    }
 }
    
