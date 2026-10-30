@@ -1,2 +1,3 @@
-1 ReyKo 30 70
-1 Fask 24 75
+6 ClonePesado 30 110
+5 Boss 30 80
+5 Fixer 30 80

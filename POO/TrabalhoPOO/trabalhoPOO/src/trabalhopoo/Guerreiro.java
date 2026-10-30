@@ -3,18 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package trabalhopoo;
+import java.util.LinkedList;
 
 public abstract class Guerreiro {
-    protected String nome;
-    protected int idade;
-    protected int peso;
-    protected int energia;
+    private String nome;
+    private int idade;
+    private int peso;
+    private int energia = 100;
+    private int energiaMaxima = 100;
+    private boolean envenenado = false;
 
     public Guerreiro(String nome, int idade, int peso) {
         this.nome = nome;
         this.idade = idade;
         this.peso = peso;
-        this.energia = 100;
     }
 
     public String getNome() {
@@ -45,13 +47,34 @@ public abstract class Guerreiro {
         return energia;
     }
 
-    public void setEnergia(int energia) {
-        this.energia = energia;
+    public void setEnergia(int novaEnergia) {
+        if (novaEnergia > this.energiaMaxima){
+            this.energia = this.energiaMaxima;   
+        } else {
+            this.energia = novaEnergia;
+        }
+
+    }
+
+    public void setEnergiaMaxima(int energiaMaxima) {
+        this.energiaMaxima = energiaMaxima;
+    }
+
+    public boolean isEnvenenado() {
+        return envenenado;
+    }
+
+    public void setEnvenenado(boolean envenenado) {
+        this.envenenado = envenenado;
     }
     
     public boolean isVivo(){
         return energia > 0;
     }
     
-    public abstract void atacar(Guerreiro alvo);
+    public abstract void atacar(LinkedList<Guerreiro>[] ladoInimigo, LinkedList<Guerreiro>[] meuLado, int minhaFila);
+    
+    public void aoSerEliminado(LinkedList<Guerreiro>[] meuLado, int minhaFila){
+        
+    }
 }

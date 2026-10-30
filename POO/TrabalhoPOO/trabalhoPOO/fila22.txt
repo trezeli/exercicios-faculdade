@@ -1,0 +1,2 @@
+2 Aranha1 5 120
+4 Acolito1 20 70

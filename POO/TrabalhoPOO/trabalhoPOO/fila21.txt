@@ -1,2 +1,2 @@
-5 B1-Series 5 100
-5 B2-HA 2 120
+1 DroideB1 5 100
+5 DarthMaul 30 75

@@ -4,10 +4,24 @@
  */
 package trabalhopoo;
 
-/**
- *
- * @author queir
- */
-public class AssassinoSith {
+import java.util.LinkedList;
+
+public class AssassinoSith extends Guerreiro {
+
+    public AssassinoSith(String nome, int idade, int peso) {
+        super(nome, idade, peso);
+    }
+
+    @Override
+    public void atacar(LinkedList<Guerreiro>[] ladoInimigo, LinkedList<Guerreiro>[] meuLado, int minhaFila) {
+        Guerreiro alvo = TrabalhoPOO.obterAlvo(ladoInimigo, minhaFila);
+        
+        if (alvo != null) {
+            alvo.setEnergia(alvo.getEnergia() - 20);
+
+            alvo.setEnvenenado(true);
+            System.out.println("   [TOXINA] " + this.getNome() + " envenenou " + alvo.getNome() + "!");
+        }
+    }
     
 }
