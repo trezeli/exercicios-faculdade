@@ -118,7 +118,7 @@ public class Arena {
         exibirRelatorioInicial();
         int rodada = 1;
         while (temGuerreirosVivos(lado1) && temGuerreirosVivos(lado2)) {
-            System.out.println("--- RODADA " + rodada + " ---");
+            Arena.log("--- RODADA " + rodada + " ---");
             provocaLado1 = null;
             primeiroAtaque = true;
 
