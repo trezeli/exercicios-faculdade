@@ -22,14 +22,14 @@ public class LordeSith extends Guerreiro {
             if (!alvo.isVivo()){
                 EspectroSith fantasma = new EspectroSith(alvo.getNome(), alvo.getIdade(), alvo.getPeso());
                 meuLado[minhaFila].addLast(fantasma);
-                System.out.println("   [NECROMANCIA] " + this.getNome() + " reanimou " + alvo.getNome() + " como um Espectro Sith!");
+                Arena.log("   [NECROMANCIA] " + this.getNome() + " reanimou " + alvo.getNome() + " como um Espectro Sith!");
             }
         }
     }
     
     @Override
     public void aoSerEliminado(LinkedList<Guerreiro>[] meuLado, int minhaFila){
-        System.out.println("   [VINGANCA SITH] O Lorde " + this.getNome() + " caiu! 4 Acolitos surgem para o vingar!");
+        Arena.log("   [VINGANCA SITH] O Lorde " + this.getNome() + " caiu! 4 Acolitos surgem para o vingar!");
         for (int i = 0; i < 4; i++){
             AcolitoSith acolito = new AcolitoSith(this.getNome(), 0, 60);
             meuLado[minhaFila].addLast(acolito);

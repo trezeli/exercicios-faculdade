@@ -15,6 +15,7 @@ public class Arena {
     public static boolean primeiroAtaque = false;
     public static Guerreiro ultimoAtacante = null;
     public static Guerreiro ultimoDerrotado = null;
+    public static boolean DEBUG = false;
     private java.util.Random sorteio = new java.util.Random();
 
     public Arena(LinkedList<Guerreiro>[] lado1, LinkedList<Guerreiro>[] lado2) {
@@ -71,15 +72,15 @@ public class Arena {
         for (int i = 0; i < 4; i++){
             System.out.println("Fila " + (i + 1) + ":");
             for (Guerreiro g : lado1[i]){
-                System.out.println(" "+ g.getClass().getSimpleName() + ": " + g.getNome() + ", " + g.getIdade() + " anos, "+ g.getPeso() + " kilos");
+                System.out.println(" "+ g.getTipo() + ": " + g.getNome() + ", " + g.getIdade() + " anos, "+ g.getPeso() + " kilos");
             }
         }
         
-        System.out.println("a)\nLADO 2:");
+        System.out.println("\nLADO 2:");
         for (int i = 0; i < 4; i++){
             System.out.println("Fila " + (i + 1) + ":");
             for (Guerreiro g : lado2[i]){
-                System.out.println(" "+ g.getClass().getSimpleName() + ": " + g.getNome() + ", " + g.getIdade() + " anos, "+ g.getPeso() + " kilos");
+                System.out.println(" "+ g.getTipo() + ": " + g.getNome() + ", " + g.getIdade() + " anos, "+ g.getPeso() + " kilos");
             }
         }
         
@@ -109,7 +110,7 @@ public class Arena {
         }
         System.out.println("\nc)");
         if (maisVelho != null){
-            System.out.println("O " + maisVelho.getClass().getSimpleName() + " " + maisVelho.getNome() + " é o mais velho e tem " + maisVelho.getIdade() + " anos\n");
+            System.out.println("O " + maisVelho.getTipo() + " " + maisVelho.getNome() + " é o mais velho e tem " + maisVelho.getIdade() + " anos\n");
         }
     }
     
@@ -214,18 +215,24 @@ public class Arena {
         System.out.println("\ne)");
         if (ultimoDerrotado != null) {
             String ladoPerdedor = lado1Venceu ? "Sith e Droides" : "Jedi e Clones";
-            System.out.println("O " + ultimoDerrotado.getClass().getSimpleName() + " " + ultimoDerrotado.getNome() + 
+            System.out.println("O " + ultimoDerrotado.getTipo() + " " + ultimoDerrotado.getNome() + 
                                ", de " + ultimoDerrotado.getIdade() + " anos e " + ultimoDerrotado.getPeso() + 
                                " kilos, foi o ultimo a ser derrotado no lado dos " + ladoPerdedor);
         }
 
         System.out.println("\nf)");
         if (ultimoAtacante != null && ultimoDerrotado != null) {
-            System.out.println("O " + ultimoAtacante.getClass().getSimpleName() + " " + ultimoAtacante.getNome() + 
+            System.out.println("O " + ultimoAtacante.getTipo() + " " + ultimoAtacante.getNome() + 
                                ", de " + ultimoAtacante.getIdade() + " anos e " + ultimoAtacante.getPeso() + 
-                               " kilos, desferiu o ultimo ataque no " + ultimoDerrotado.getClass().getSimpleName() + 
+                               " kilos, desferiu o ultimo ataque no " + ultimoDerrotado.getTipo() + 
                                " " + ultimoDerrotado.getNome() + ", de " + ultimoDerrotado.getIdade() + 
                                " anos e " + ultimoDerrotado.getPeso() + " kilos.");
+        }
+    }
+    
+    public static void log(String msg) {
+        if (DEBUG) {
+            System.out.println(msg);
         }
     }
 }

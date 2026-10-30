@@ -23,7 +23,7 @@ public class DroideBatalha extends Guerreiro {
         Guerreiro alvo = Arena.obterAlvo(ladoInimigo, minhaFila);
         if (alvo != null) {
             alvo.setEnergia(alvo.getEnergia() - 10);
-            System.out.println("   [TIRO LASER] " + this.getNome() + " disparou 10 de dano em " + alvo.getNome() + "!");
+            Arena.log("   [TIRO LASER] " + this.getNome() + " disparou 10 de dano em " + alvo.getNome() + "!");
         }
     }
 
@@ -35,14 +35,14 @@ public class DroideBatalha extends Guerreiro {
         if (original > 1) {
             meuLado[minhaFila].addLast(new DroideBatalha(getNome() + "1", getIdade(), getPeso(), metade));
             meuLado[minhaFila].addLast(new DroideBatalha(getNome() + "2", getIdade(), getPeso(), metade));
-            System.out.println("   [DIVISAO DROIDE] " + getNome() + " foi destruido e dividiu-se em 2 droides com "
+            Arena.log("   [DIVISAO DROIDE] " + getNome() + " foi destruido e dividiu-se em 2 droides com "
                     + metade + " de energia cada!");
         }
     }
     
     @Override
     public String getTipo() {
-        return "Droide Batalha";
+        return "Droide de Batalha";
     }
     
 }

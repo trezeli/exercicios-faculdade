@@ -33,7 +33,7 @@ public class JediGeneral extends Guerreiro {
                 
                 this.setEnergia(this.getEnergia() + 20); // recupera 20
                 
-                System.out.println(" [EQUILIBRIO DA FORCA]" + this.getNome() +
+                Arena.log(" [EQUILIBRIO DA FORCA]" + this.getNome() +
                                    " derrotou " + alvo.getNome() +
                                    "! Abates: " + this.abates +
                                    " | Novo ataque: " + (50 + (this.abates * 5)));

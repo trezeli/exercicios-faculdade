@@ -19,7 +19,7 @@ public class DroideAranha extends Guerreiro {
             return;
         }
 
-        System.out.println("   [VARREDURA LASER] " + this.getNome() + " disparou 10 de dano em TODOS da fila " + (filaAlvo + 1) + "!");
+        Arena.log("   [VARREDURA LASER] " + this.getNome() + " disparou 10 de dano em TODOS da fila " + (filaAlvo + 1) + "!");
         for (Guerreiro g : ladoInimigo[filaAlvo]) {
             g.setEnergia(g.getEnergia() - 10);
         }

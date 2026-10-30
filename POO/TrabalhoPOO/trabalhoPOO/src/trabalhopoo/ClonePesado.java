@@ -19,13 +19,13 @@ public class ClonePesado extends Guerreiro{
         // a provocação só vale se ele for o primeiro a atacar na rodada
         if (Arena.primeiroAtaque) {
             Arena.provocaLado1 = this;
-            System.out.println("   [PROVOCACAO] " + this.getNome() + " ativou a provocacao!");
+            Arena.log("   [PROVOCACAO] " + this.getNome() + " ativou a provocacao!");
         }
 
         Guerreiro alvo = Arena.obterAlvo(ladoInimigo, minhaFila);
         if (alvo != null) {
             alvo.setEnergia(alvo.getEnergia() - 30);
-            System.out.println("   [CANHAO AT-RT] " + this.getNome() + " disparou 30 de dano em " + alvo.getNome() + "!");
+            Arena.log("   [CANHAO AT-RT] " + this.getNome() + " disparou 30 de dano em " + alvo.getNome() + "!");
         }
     }
     

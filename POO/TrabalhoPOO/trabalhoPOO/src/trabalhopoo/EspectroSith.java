@@ -18,6 +18,7 @@ public class EspectroSith extends Guerreiro {
         
         if (alvo != null){
             alvo.setEnergia(alvo.getEnergia() - 5);
+            Arena.log("   [ESPECTRO] " + this.getNome() + " atacou " + alvo.getNome() + "!");
         }
     }
     

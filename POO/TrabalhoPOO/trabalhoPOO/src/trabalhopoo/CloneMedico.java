@@ -21,7 +21,7 @@ public class CloneMedico extends Guerreiro {
         Guerreiro alvo = Arena.obterAlvo(ladoInimigo, minhaFila);
         if (alvo != null) {
             alvo.setEnergia(alvo.getEnergia() - 20);
-            System.out.println("   [BLASTER] " + this.getNome() + " atacou " + alvo.getNome() + "!");
+            Arena.log("   [BLASTER] " + this.getNome() + " atacou " + alvo.getNome() + "!");
         }
 
         // cura o aliado que está logo atrás dele na fila
@@ -29,7 +29,7 @@ public class CloneMedico extends Guerreiro {
         if (pos != -1 && pos + 1 < meuLado[minhaFila].size()) {
             Guerreiro aliado = meuLado[minhaFila].get(pos + 1);
             aliado.setEnergia(aliado.getEnergia() + 20);
-            System.out.println("   [CURA] " + this.getNome() + " curou " + aliado.getNome() + " em 20 pontos!");
+            Arena.log("   [CURA] " + this.getNome() + " curou " + aliado.getNome() + " em 20 pontos!");
         }
     }
     

@@ -20,7 +20,7 @@ public class AssassinoSith extends Guerreiro {
             alvo.setEnergia(alvo.getEnergia() - 20);
 
             alvo.setEnvenenado(true);
-            System.out.println("   [TOXINA] " + this.getNome() + " envenenou " + alvo.getNome() + "!");
+            Arena.log("   [TOXINA] " + this.getNome() + " envenenou " + alvo.getNome() + "!");
         }
     }
     

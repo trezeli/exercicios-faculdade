@@ -34,7 +34,7 @@ public class CloneComando extends Guerreiro {
         int danoTotal = 40 + (clonesAtras * 8);
         alvo.setEnergia(alvo.getEnergia() - danoTotal);
 
-        System.out.println("   [ESQUADRAO COMANDO] " + this.getNome() + " atacou com " + danoTotal
+        Arena.log("   [ESQUADRAO COMANDO] " + this.getNome() + " atacou com " + danoTotal
                 + " de dano! (" + clonesAtras + " comandos na retaguarda)");
     }
     

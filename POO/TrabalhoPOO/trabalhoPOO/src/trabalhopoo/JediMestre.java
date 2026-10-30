@@ -20,6 +20,8 @@ public class JediMestre extends Guerreiro {
             // Aplica o dano base do mestre
             boolean foiPrimeiro = Arena.primeiroAtaque;
             alvo.setEnergia(alvo.getEnergia() - 35);
+            Arena.log("   [SABRE DE LUZ] " + this.getNome() + " atacou " + alvo.getNome() + "!");
+
             if (foiPrimeiro && alvo.isVivo()){
                 int f = Arena.filaDe(ladoInimigo, alvo);
                 if (f != -1 && ladoInimigo[f].size() > 1){
@@ -27,6 +29,8 @@ public class JediMestre extends Guerreiro {
                     ladoInimigo[f].addLast(alvo);
                 }
                 alvo.setImpedido(true);
+                Arena.log("   [EMPURRAO DA FORCA] " + alvo.getNome() + " foi jogado para o final da fila!");
+
             }
         }
     }

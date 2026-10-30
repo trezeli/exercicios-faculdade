@@ -19,7 +19,7 @@ public class DroideExterminador extends Guerreiro {
         Guerreiro alvo = Arena.obterAlvo(ladoInimigo, minhaFila);
         
         if (alvo != null) {
-            System.out.println("   [GRANADA DE PLASMA] " + this.getNome() + 
+            Arena.log("   [GRANADA DE PLASMA] " + this.getNome() + 
                                " lançou uma granada de plasma em " + alvo.getNome() + " (ELIMINAÇÃO INSTANTÂNEA)!");
             
             // Zera a energia diretamente para garantir a eliminação instantânea

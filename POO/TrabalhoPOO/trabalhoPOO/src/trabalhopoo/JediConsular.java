@@ -22,6 +22,7 @@ public class JediConsular extends Guerreiro {
         
         int f = Arena.filaDe(ladoInimigo, alvo);
         alvo.setEnergia(alvo.getEnergia() - 30);
+        Arena.log("   [ONDA DA FORCA] " + this.getNome() + " atacou " + alvo.getNome() + " e os inimigos das filas proximas!");
         if (f > 0 && !ladoInimigo[f - 1].isEmpty()){
             Guerreiro g = ladoInimigo[f - 1].getFirst();
             g.setEnergia(g.getEnergia() - 15);

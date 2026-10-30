@@ -28,7 +28,7 @@ public class AcolitoSith extends Guerreiro {
         Guerreiro ultimo = ladoInimigo[filaAlvo].getLast();
         ultimo.setEnergia(ultimo.getEnergia() - 15);
 
-        System.out.println("   [SALTO SOMBRIO] " + this.getNome() + " atacou " + primeiro.getNome()
+        Arena.log("   [SALTO SOMBRIO] " + this.getNome() + " atacou " + primeiro.getNome()
                 + " e " + ultimo.getNome() + "!");
     }
 
