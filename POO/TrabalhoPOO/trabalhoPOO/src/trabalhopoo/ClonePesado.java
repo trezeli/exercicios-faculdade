@@ -17,10 +17,10 @@ public class ClonePesado extends Guerreiro{
     @Override
     public void atacar(LinkedList<Guerreiro>[] ladoInimigo, LinkedList<Guerreiro>[] meuLado, int minhaFila) {
         // ativa provocamento da rodadis
-        TrabalhoPOO.provocaLado1 = this;
+        Arena.provocaLado1 = this;
         System.out.println("   [PROVOCACAO] " + this.getNome() + " ativou a provocacao!");
         
-        Guerreiro alvo = TrabalhoPOO.obterAlvo(ladoInimigo, minhaFila);
+        Guerreiro alvo = Arena.obterAlvo(ladoInimigo, minhaFila);
         
         if (alvo != null){
             alvo.setEnergia(alvo.getEnergia() - 30);

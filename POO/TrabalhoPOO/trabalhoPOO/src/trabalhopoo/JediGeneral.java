@@ -20,7 +20,7 @@ public class JediGeneral extends Guerreiro {
     
     @Override
     public void atacar(LinkedList<Guerreiro>[] ladoInimigo, LinkedList<Guerreiro>[] meuLado, int minhaFila) {
-        Guerreiro alvo = TrabalhoPOO.obterAlvo(ladoInimigo, minhaFila);
+        Guerreiro alvo = Arena.obterAlvo(ladoInimigo, minhaFila);
         
         if (alvo != null){
             // dano base (50) + 5 p cada derrotado

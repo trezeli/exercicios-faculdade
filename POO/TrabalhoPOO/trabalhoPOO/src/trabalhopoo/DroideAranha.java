@@ -17,7 +17,7 @@ public class DroideAranha extends Guerreiro {
         int filaAlvo = minhaFila;
         
         //se houver provocacao do clone pesado ativa,descobre pra focar la na fila dele
-        if (TrabalhoPOO.provocaLado1 != null && TrabalhoPOO.provocaLado1.isVivo()){
+        if (Arena.provocaLado1 != null && Arena.provocaLado1.isVivo()){
             for (int f = 0; f < 4; f++){
                 filaAlvo = f;
                 break;
