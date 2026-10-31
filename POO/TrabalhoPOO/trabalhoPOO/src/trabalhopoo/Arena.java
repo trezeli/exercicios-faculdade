@@ -15,7 +15,7 @@ public class Arena {
     public static boolean primeiroAtaque = false;
     public static Guerreiro ultimoAtacante = null;
     public static Guerreiro ultimoDerrotado = null;
-    public static boolean DEBUG = false;
+    public static boolean DEBUG = true;
     private java.util.Random sorteio = new java.util.Random();
 
     public Arena(LinkedList<Guerreiro>[] lado1, LinkedList<Guerreiro>[] lado2) {
