@@ -23,11 +23,6 @@ public abstract class Drone {
     }
 
     @Override
-    public int hashCode() {
-        return Integer.hashCode(numeroSerie);
-    }
-
-    @Override
     public String toString() {
         return numeroSerie +  " (numero de serie) " + anoFabricacao + " (ano de fabricacao) ";
     }
