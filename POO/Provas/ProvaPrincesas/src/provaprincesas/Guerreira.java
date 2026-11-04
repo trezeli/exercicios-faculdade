@@ -16,15 +16,21 @@ public class Guerreira extends Princesa {
         this.arma = arma;
     }
 
+    
     @Override
     public void atacar(Princesa alvo) {
+        pagarCongelamento();
+        alvo.setEnergia(alvo.getEnergia() - getDano());
+    }
+ 
+    protected int getDano(){
         if (arma.equals("Espada")){
-            alvo.setEnergia(alvo.getEnergia() - 35);
+            return 35;
         } else {
-            alvo.setEnergia(alvo.getEnergia() - 25);
+            return 25;
         }
     }
-
+    
     @Override
     public String toString() {
         return super.toString() + ", arma " + arma;

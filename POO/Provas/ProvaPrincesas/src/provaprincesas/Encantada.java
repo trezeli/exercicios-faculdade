@@ -18,6 +18,7 @@ public class Encantada extends Princesa {
 
     @Override
     public void atacar(Princesa alvo) {
+        pagarCongelamento();
         alvo.setEnergia(alvo.getEnergia() - this.poderMagico);
         this.setEnergia((this.getEnergia() + 10));
     }

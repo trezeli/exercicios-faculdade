@@ -9,8 +9,9 @@ import java.util.Objects;
 public abstract class Princesa {
     private final String nome;
     private String reino;
-    private int idade, energia;
+    private int idade, energia = 100;
     private static int qt = 0;
+    private boolean congelada = false;
 
     public Princesa(String nome, String reino, int idade) {
         this.nome = nome;
@@ -29,7 +30,9 @@ public abstract class Princesa {
     }
 
     public void setEnergia(int energia) {
-        this.energia = Math.max(0, energia);
+        if (energia < 0) energia = 0;
+        if (energia > 100) energia = 100;
+        this.energia = energia;
     }
 
     @Override
@@ -49,14 +52,22 @@ public abstract class Princesa {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (!(obj instanceof Princesa)) {
             return false;
         }
         final Princesa other = (Princesa) obj;
-        return Objects.equals(this.nome, other.nome);
+        return this.nome.equals(other.nome);
     }
     
     public abstract void atacar(Princesa alvo);
     
+    public void congelar(){
+        congelada = true;
+    }
     
+    protected void pagarCongelamento(){
+        if(congelada){
+            setEnergia(getEnergia() - 5);
+        }
+    }
 }

@@ -11,13 +11,24 @@ package provaprincesas;
 public class Mulan extends Guerreira {
     private static int qtDerrotadas = 0;
     
-    public Mulan(String nome, int idade) {
-        super(nome, "China", idade, "Espada");
+    public Mulan(int idade) {
+        super("Mulan", "China", idade, "Espada");
+    }
+
+    @Override
+    protected int getDano() {
+        return super.getDano() + 5 * qtDerrotadas;
     }
 
     @Override
     public void atacar(Princesa alvo) {
-        super.atacar(alvo); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        boolean estavaViva = alvo.getEnergia() > 0;
+        
+        super.atacar(alvo);
+        
+        if (estavaViva && alvo.getEnergia() == 0){
+            qtDerrotadas++;
+        }
     }
     
     

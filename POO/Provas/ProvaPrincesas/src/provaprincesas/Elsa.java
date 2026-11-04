@@ -7,13 +7,14 @@ package provaprincesas;
 public class Elsa extends Encantada {
     private boolean congelada = false;
     
-    public Elsa(String nome, int idade) {
-        super(nome, "Arendelle", idade, 40);
+    public Elsa(int idade) {
+        super("Elsa", "Arendelle", idade, 40);
     }
 
     @Override
     public void atacar(Princesa alvo) {
-        super.atacar(alvo); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        super.atacar(alvo);
+        alvo.congelar();
     }
     
     
