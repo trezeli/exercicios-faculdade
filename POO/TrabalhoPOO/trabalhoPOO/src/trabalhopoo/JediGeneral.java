@@ -13,10 +13,6 @@ public class JediGeneral extends Guerreiro {
         super(nome, idade, peso);
         this.abates = 0;
     }
-
-    public int getAbates() {
-        return abates;
-    }
     
     @Override
     public void atacar(LinkedList<Guerreiro>[] ladoInimigo, LinkedList<Guerreiro>[] meuLado, int minhaFila) {

@@ -18,7 +18,7 @@ public class ClonePesado extends Guerreiro{
     public void atacar(LinkedList<Guerreiro>[] ladoInimigo, LinkedList<Guerreiro>[] meuLado, int minhaFila) {
         // a provocação só vale se ele for o primeiro a atacar na rodada
         if (Arena.primeiroAtaque) {
-            Arena.provocaLado1 = this;
+            Arena.alvoProvocado = this;
             Arena.log("   [PROVOCACAO] " + this.getNome() + " ativou a provocacao!");
         }
 

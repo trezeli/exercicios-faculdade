@@ -8,10 +8,10 @@ public class LARC_2016 {
 
     public static void main(String[] args) {
         /* Toda Equipe tem quantidade de membros atual e a quantidade máxima
-        esses são os 2 últimos parâmetros dos construtores abaixo
-        Equipes Soccer2D também tem o caminho da logo (primeiro parâmetro)
-        Equipes SEK também tem a quantidade de robôs (primeiro parâmetro)
-        Ex: equipe1 tem caminho c:/ e equipe2 tem 3 robos
+ esses são os 2 últimos parâmetros dos construtores abaixo
+ Equipes Soccer2D também tem o caminho da logo (primeiro parâmetro)
+ Equipes SEK também tem a quantidade de robôs (primeiro parâmetro)
+ Ex: equipe1 tem caminho c:/ e equipe2 tem 3 robos
          */
         Asimov2D equipe1 = new Asimov2D("c:/", 7, 10);
         AsimovSEK equipe2 = new AsimovSEK(3, 6, 6);

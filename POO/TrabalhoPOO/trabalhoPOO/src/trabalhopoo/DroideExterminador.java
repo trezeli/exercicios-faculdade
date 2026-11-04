@@ -10,7 +10,6 @@ public class DroideExterminador extends Guerreiro {
 
     public DroideExterminador(String nome, int idade, int peso) {
         super(nome, idade, peso);
-        this.setEnergiaMaxima(60);
         this.setEnergia(60);
     }
 

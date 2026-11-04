@@ -11,11 +11,11 @@ public class Arena {
     private LinkedList<Guerreiro>[] lado1;
     private LinkedList<Guerreiro>[] lado2;
     
-    public static Guerreiro provocaLado1 = null;
+    public static Guerreiro alvoProvocado = null;
     public static boolean primeiroAtaque = false;
     public static Guerreiro ultimoAtacante = null;
     public static Guerreiro ultimoDerrotado = null;
-    public static boolean DEBUG = true;
+    public static boolean DEBUG = false;
     private java.util.Random sorteio = new java.util.Random();
 
     public Arena(LinkedList<Guerreiro>[] lado1, LinkedList<Guerreiro>[] lado2) {
@@ -31,8 +31,8 @@ public class Arena {
     }
     
     public static int obterFilaAlvo(LinkedList<Guerreiro>[] ladoInimigo, int fila) {
-        if (provocaLado1 != null && provocaLado1.isVivo()) {
-            int f = filaDe(ladoInimigo, provocaLado1);
+        if (alvoProvocado != null && alvoProvocado.isVivo()) {
+            int f = filaDe(ladoInimigo, alvoProvocado);
             if (f != -1) {
                 return f;
             }
@@ -51,8 +51,8 @@ public class Arena {
         if (f == -1) {
             return null;
         }
-        if (provocaLado1 != null && ladoInimigo[f].contains(provocaLado1)) {
-            return provocaLado1;
+        if (alvoProvocado != null && ladoInimigo[f].contains(alvoProvocado)) {
+            return alvoProvocado;
         }
         return ladoInimigo[f].getFirst();
     }
@@ -119,7 +119,7 @@ public class Arena {
         int rodada = 1;
         while (temGuerreirosVivos(lado1) && temGuerreirosVivos(lado2)) {
             Arena.log("--- RODADA " + rodada + " ---");
-            provocaLado1 = null;
+            alvoProvocado = null;
             primeiroAtaque = true;
 
             Guerreiro[] atq1 = primeiros(lado1);
@@ -170,7 +170,6 @@ public class Arena {
             primeiroAtaque = false;
 
             removerMortos(inimigo, a);       // remove na hora e dispara aoSerEliminado
-            removerMortos(meu, null);
         }
     }
 
