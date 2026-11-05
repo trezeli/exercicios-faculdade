@@ -1,0 +1,35 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package prova20252;
+
+/**
+ *
+ * @author queir
+ */
+public class MagiaComposta extends Magia {
+    protected MagiaSimples m1, m2;
+
+    public MagiaComposta(MagiaSimples m1, MagiaSimples m2) {
+        this.m1 = m1;
+        this.m2 = m2;
+    }
+    
+
+    @Override
+    public String obterNomeUsuario() {
+        return m1.obterNomeUsuario() + " e " + m2.obterNomeUsuario();
+    }
+
+    @Override
+    public String obterCor() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public int obterPoder() {
+        return (m1.obterPoder() + m2.obterPoder());
+    }
+    
+}
