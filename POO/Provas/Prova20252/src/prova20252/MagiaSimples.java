@@ -26,8 +26,5 @@ public abstract class MagiaSimples extends Magia {
     public int obterPoder() {
         return poder;
     }
-
-    @Override
-    public abstract String obterCor();
     
 }

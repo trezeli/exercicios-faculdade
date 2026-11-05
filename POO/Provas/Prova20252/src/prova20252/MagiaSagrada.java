@@ -19,10 +19,4 @@ public class MagiaSagrada extends MagiaSimples {
         return "Branco";
                 
     }
-
-    @Override
-    public int obterPoder() {
-        return super.obterPoder(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
-    
 }

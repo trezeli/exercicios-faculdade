@@ -8,7 +8,7 @@ package prova20252;
  *
  * @author queir
  */
-public class MagiaComposta extends Magia {
+public abstract class MagiaComposta extends Magia {
     protected MagiaSimples m1, m2;
 
     public MagiaComposta(MagiaSimples m1, MagiaSimples m2) {
@@ -20,11 +20,6 @@ public class MagiaComposta extends Magia {
     @Override
     public String obterNomeUsuario() {
         return m1.obterNomeUsuario() + " e " + m2.obterNomeUsuario();
-    }
-
-    @Override
-    public String obterCor() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
